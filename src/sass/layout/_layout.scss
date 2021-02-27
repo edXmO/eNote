@@ -1,0 +1,22 @@
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: [controls-start].5fr [controls-end search-start] 1fr [search-end notes-start] minmax(300px, 5fr) [notes-end];
+}
+
+.controls {
+    grid-area: controls-start / 1 / controls-end / -1;
+  }
+  
+.searchbar {
+    grid-area: search-start / 1 / search-end/ -1;
+    margin-bottom: 1rem;
+}
+  
+.notes {
+    grid-area: notes-start / 1 / notes-end / -1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}

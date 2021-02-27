@@ -1,0 +1,41 @@
+.searchbar-box {
+    height: 100%;
+    margin: .5rem .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &__icon {
+        position:absolute;
+        right: 5rem;
+        height: 1.5rem;
+        width: 1.5rem;
+        fill: var(--color-grey-dark);
+    }
+    
+    &__input {
+        background-color: var(--color-grey-dark-bg);
+        outline: none;
+        border: none;
+        border-radius: 50px;
+        width: 85%;
+        height: 4rem;
+        font-family: var(--font-default);
+        font-size: 1.8rem;
+        text-indent: 5rem;
+        color: var(--color-white);
+        transition: width .3s;
+
+        &:focus {
+            width: 90%;
+        }
+
+        &::placeholder,
+        &::placeholder:active {
+            text-indent: 5rem;
+            color: var(--color-grey-dark);
+            font-size: 1.8rem;
+        }
+    }
+}

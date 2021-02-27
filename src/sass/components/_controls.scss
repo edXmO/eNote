@@ -1,0 +1,41 @@
+.controls-box {
+    height: 100%;
+    grid-area: 1 / 1 / 2 / -1;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr [notes-start] 1fr [notes-end tasks-start] 1fr [tasks-end settings-start] 1fr [settings-end];
+    justify-items: center;
+    align-items: center;
+    margin: .8rem .5rem;
+
+    &__notes {
+        grid-area: 1 / notes-start / 2 / notes-end;
+        height: 3rem;
+        width: 3rem;
+    }
+
+    &__tasks {
+        grid-area: 1 / tasks-start / 2 / tasks-end;
+        height: 3rem;
+        width: 3rem;
+
+    }
+
+    &__settings {   
+        grid-area: 1 / settings-start / 2 / settings-end;
+        justify-self: flex-end;
+        height: 3rem;
+        width: 3rem;
+        margin-right: 1.5rem;
+    }
+    
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: var(--color-grey-dark);
+
+        &--active {
+            fill: var(--color-primary);
+        }
+    }
+}
