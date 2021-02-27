@@ -8,6 +8,12 @@
     align-items: center;
     margin: .8rem .5rem;
 
+    button {
+        background-color: transparent;
+        outline: none;
+        border:none;
+    }
+
     &__notes {
         grid-area: 1 / notes-start / 2 / notes-end;
         height: 3rem;

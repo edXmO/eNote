@@ -17,4 +17,7 @@ body {
     line-height: 1;
     color: var(--color-grey-light);
     background-color: var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -12,20 +12,28 @@ import 'swiper/components/scrollbar/scrollbar.scss';
 // Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-const Content = () => {
+const Content = ({handleSwiperInstance}) => {
+
     return (
         <Swiper
-        autoHeight={false}
+        onSwiper={handleSwiperInstance}
         className='content'
         slidesPerView={1}>
-            <SwiperSlide className='content__swiper-child'>
+
+            <SwiperSlide 
+            virtualIndex={0} 
+            className='content__swiper-child'>
                <Searchbar />
                <Notes />
             </SwiperSlide>
-            <SwiperSlide className='content__swiper-child'>
+
+            <SwiperSlide 
+            virtualIndex={1} 
+            className='content__swiper-child'>
                <Searchbar />
                <Notes />
             </SwiperSlide>
+
         </Swiper>
     )
 }

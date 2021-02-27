@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../sass/main.scss';
 
 // Components
@@ -6,10 +6,13 @@ import Controls from './Controls/Controls';
 import Content from './Content/Content';
 
 const App = () => {
+
+ const [swiper, setSwiper] = useState(0);
+
   return (
     <div className="container">
-      <Controls />
-      <Content/>
+      <Controls swiper={swiper} />
+      <Content handleSwiperInstance={setSwiper}/>
     </div>
   );
 };

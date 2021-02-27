@@ -1,5 +1,6 @@
 .container {
     height: 100vh;
+    max-width: 42.5rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: [controls-start].5fr [controls-end search-start] 1fr [search-end notes-start] minmax(300px, 5fr) [notes-end];
@@ -8,9 +9,12 @@
 .content {
     width: 100%;
     grid-area: search-start / 1 / notes-end / -1;
-    &__swiper-child {
+    &__swiper-child,
+    &__swiper-child::-webkit-scrollbar {
         direction: vertical;
         overflow-y: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;
     }
 }
 
