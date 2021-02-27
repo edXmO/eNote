@@ -5,6 +5,15 @@
     grid-template-rows: [controls-start].5fr [controls-end search-start] 1fr [search-end notes-start] minmax(300px, 5fr) [notes-end];
 }
 
+.content {
+    width: 100%;
+    grid-area: search-start / 1 / notes-end / -1;
+    &__swiper-child {
+        direction: vertical;
+        overflow-y: scroll;
+    }
+}
+
 .controls {
     grid-area: controls-start / 1 / controls-end / -1;
   }
@@ -17,6 +26,5 @@
 .notes {
     grid-area: notes-start / 1 / notes-end / -1;
     display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+    flex-direction: column;    
 }

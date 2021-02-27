@@ -3,15 +3,13 @@ import '../sass/main.scss';
 
 // Components
 import Controls from './Controls/Controls';
-import Searchbar from './Searchbar/Searchbar';
-import Notes from './Notes/Notes';
+import Content from './Content/Content';
 
 const App = () => {
   return (
     <div className="container">
       <Controls />
-      <Searchbar />
-      <Notes />
+      <Content/>
     </div>
   );
 };

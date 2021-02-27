@@ -11,6 +11,9 @@ const Notes = () => {
         <Note title={'Título'} content={'Contenido'} date={'21 Feb'}/>
         <Note title={'Título'} content={'Contenido'} date={'21 Feb'}/>
         <Note title={'Título'} content={'Contenido'} date={'21 Feb'}/>
+        <Note title={'Título'} content={'Contenido'} date={'21 Feb'}/>
+        <Note title={'Título'} content={'Contenido'} date={'21 Feb'}/>
+        <Note title={'Título'} content={'Contenido'} date={'21 Feb'}/>
       </div>
     )
 };
