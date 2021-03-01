@@ -14,6 +14,12 @@
         border:none;
     }
 
+    @media only screen and (min-width: 450px){
+        button {
+            cursor: pointer;
+        }
+    }
+
     &__notes {
         grid-area: 1 / notes-start / 2 / notes-end;
         height: 3rem;
@@ -42,6 +48,10 @@
 
         &--active {
             fill: var(--color-primary);
+        }
+
+        &--options {
+            fill: var(--color-grey-light);
         }
     }
 }

@@ -7,12 +7,18 @@ import Content from './Content/Content';
 
 const App = () => {
 
- const [swiper, setSwiper] = useState(0);
+  const [swiper, setSwiper] = useState();
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const handleSlideChange = swiperInstance => {
+    setSwiper(swiperInstance);
+    setActiveSlide(swiperInstance.activeIndex)
+  }
 
   return (
     <div className="container">
-      <Controls swiper={swiper} />
-      <Content handleSwiperInstance={setSwiper}/>
+      <Controls activeSlide={activeSlide} swiper={swiper}/>
+      <Content handleSlideChange={handleSlideChange} setSwiper={setSwiper}/>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Searchbar from '../Searchbar/Searchbar';
 import Notes from '../Notes/Notes';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
@@ -12,11 +12,12 @@ import 'swiper/components/scrollbar/scrollbar.scss';
 // Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-const Content = ({handleSwiperInstance}) => {
+const Content = ({handleSlideChange, setSwiper}) => {
 
     return (
         <Swiper
-        onSwiper={handleSwiperInstance}
+        onInit={swiper => setSwiper(swiper)}
+        onSlideChange={swiper => handleSlideChange(swiper)}
         className='content'
         slidesPerView={1}>
 
