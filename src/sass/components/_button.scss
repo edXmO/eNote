@@ -1,0 +1,14 @@
+.btn {
+    border:none;
+    outline: none;
+    border-radius: 50%;
+    height: 5.5rem;
+    width: 5.5rem;
+    background-color: var(--color-white);
+    transform: scale(1);
+    transition: transform .2s ease-in-out;
+    &:hover,
+    &:focus {
+        transform: scale(.85);
+    }
+}

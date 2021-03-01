@@ -12,6 +12,7 @@
         height: 1.5rem;
         width: 1.5rem;
         fill: var(--color-grey-dark);
+        transition: opacity .25s;   
     }
     
     &__input {
@@ -37,5 +38,9 @@
             color: var(--color-grey-dark);
             font-size: 1.8rem;
         }
+    }
+
+    &__input:focus ~ &__icon {
+        opacity: 0;
     }
 }

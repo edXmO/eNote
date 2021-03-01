@@ -41,8 +41,9 @@
           }
           input[type=checkbox] + label {
             font-family: var(--font-default);
-            font-size: 1.6rem;
-            padding-left: 3rem;
+            color: var(--color-white);
+            font-size: 1.8rem;
+            padding-left: 3.5rem;
             margin-left: 2rem;
             position: relative;
             height: 2rem;
@@ -78,13 +79,13 @@
           // 
           input[type=checkbox] + label::after {
             top: .5rem;
-            left: .65rem;
-            height: .4rem;
-            width: .7rem;
+            left: .52rem;
+            height: .6rem;
+            width: .9rem;
             margin-right: .5rem;
             border-left: 2px solid var(--color-white);
             border-bottom: 2px solid var(--color-white);
-            transform: rotate(-45deg) scale(0.5);
+            transform: rotate(-45deg) scale(.5);
             transform-origin: 50% 50%;
             opacity: 0;
             transition: 150ms ease-in-out;
@@ -107,4 +108,5 @@
 .task-container {
     display: inline-block;
     min-width: 10rem;
+    max-width: 30rem;
 }

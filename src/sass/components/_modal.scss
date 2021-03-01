@@ -1,0 +1,85 @@
+.modal-form {
+    height: 90%;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: .2fr .3fr 1.5fr;
+    grid-template-areas:
+        "back . . tick" 
+        "in-title in-title in-title in-title"
+        "in-content in-content in-content in-content";
+    
+    button,button:active {
+        border:none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    
+    input,input:active {
+        background: #000;
+        border: none;
+        outline: none;
+        font-family: var(--font-default);
+        font-size: 2rem;
+        color:var(--color-grey-light);
+    }
+    textarea,textarea:active {
+        background: #000;
+        border: none;
+        resize: none;
+        outline: none;
+        font-family: var(--font-default);
+        font-size: 1.8rem;
+        color:var(--color-grey-light);
+    }
+
+    &__btn {
+        &--back {
+            grid-area: back;
+            justify-self: flex-start;
+        }
+        &--tick {
+            grid-area: tick;
+            justify-self: flex-end;
+            margin-right: 1rem;
+        }
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: var(--color-grey-light);
+        &--back{
+            &::placeholder{
+                color: var(--color-grey-dark)
+            }
+        }
+        
+    }
+
+    &__label {
+        font-family: var(--font-default);
+        font-size: 2rem;
+        grid-area: heading;
+        align-self: flex-end;
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--color-grey-light); 
+    }
+
+    &__input {
+        font-family: var(--font-default);
+        font-size: 1.6rem;
+        color:var(--color-grey-light);
+        text-align: start;
+        &--title{
+            grid-area: in-title;
+        }
+        &--content{
+            grid-area: in-content;
+        }
+    }
+    
+}
