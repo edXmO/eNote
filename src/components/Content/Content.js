@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Searchbar from '../Searchbar/Searchbar';
-import Notes from '../Notes/Notes';
+import NoteList from '../List/List';
+import Tasks from '../TasksList/Tasks';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/react';
 // Swiper Styles
@@ -22,17 +23,15 @@ const Content = ({handleSlideChange, setSwiper}) => {
         slidesPerView={1}>
 
             <SwiperSlide 
-            virtualIndex={0} 
             className='content__swiper-child'>
                <Searchbar />
-               <Notes />
+               <NoteList />
             </SwiperSlide>
 
             <SwiperSlide 
-            virtualIndex={1} 
             className='content__swiper-child'>
                <Searchbar />
-               <Notes />
+                <Tasks/>
             </SwiperSlide>
 
         </Swiper>

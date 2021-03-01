@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div className="container">
       <Controls activeSlide={activeSlide} swiper={swiper}/>
-      <Content handleSlideChange={handleSlideChange} setSwiper={setSwiper}/>
+      <Content handleSlideChange={handleSlideChange} setSwiper={setSwiper} />
     </div>
   );
 };

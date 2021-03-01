@@ -10,10 +10,10 @@ const Controls = ({activeSlide, swiper}) => {
 
   const handleBtnClick = () => {
     if(activeSlide === 0){
-      swiper.slideTo(1)
+      swiper.slideTo(1, 100)
     }
     if(activeSlide === 1){
-      swiper.slideTo(0)
+      swiper.slideTo(0, 100)
     }
   }
 
@@ -21,7 +21,7 @@ const Controls = ({activeSlide, swiper}) => {
     <div className="controls">
       <div className="controls-box">
 
-        <div className="controls-box__notes">
+        <div className="controls-box__list">
           <button onClick={handleBtnClick}>
           <Notes className={`controls-box__icon ${activeSlide === 0 ? 'controls-box__icon--active': ''}`} />
           </button>
