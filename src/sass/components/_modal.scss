@@ -14,6 +14,10 @@
         outline: none;
         background-color: transparent;
         cursor: pointer;
+        // Disable blue highlight on touch/press
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;
+
     }
     
     input,input:active,input:focus {

@@ -23,7 +23,8 @@
     &__swiper-child::-webkit-scrollbar {
         direction: vertical;
         overflow-y: scroll;
-        -ms-overflow-style: none;  /* IE and Edge */
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;  /* IE and Edge */
         scrollbar-width: none;
     }
 }

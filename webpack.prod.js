@@ -15,7 +15,7 @@ module.exports = merge(common, {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'eNote',
-            template: path.resolver(__dirname, 'public', 'index.html')
+            template: path.resolve(__dirname, 'public', 'index.html')
         }),
         new webpack.HotModuleReplacementPlugin()
     ]
