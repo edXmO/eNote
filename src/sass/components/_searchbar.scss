@@ -20,7 +20,7 @@
         outline: none;
         border: none;
         border-radius: 50px;
-        width: 85%;
+        width: 90%;
         height: 4rem;
         font-family: var(--font-default);
         font-size: 1.8rem;
@@ -29,7 +29,7 @@
         transition: width .3s;
 
         &:focus {
-            width: 90%;
+            width: 95%;
         }
 
         &::placeholder,

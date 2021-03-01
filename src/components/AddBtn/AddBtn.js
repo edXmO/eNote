@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Plus from '../../assets/SVG/plus.svg';
 
-const AddBtn = ({ activeSlide }) => {
+const AddBtn = ({ activeSlide, onAddNote }) => {
   const handleClick = () => {
-    console.log('add clicked');
+    onAddNote();
   };
 
   return (

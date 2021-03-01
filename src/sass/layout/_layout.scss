@@ -4,6 +4,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: [controls-start].5fr [controls-end search-start] 1fr [search-end notes-start] minmax(300px, 5fr) [notes-end];
+    background-color: var(--color-black);
+    border-radius: 3px;
 }
 
 @media only screen and (min-width: 450px){
@@ -59,9 +61,27 @@
 
 .modal-background {
     grid-area: 1 / 1 / -1 / -1;
-    z-index: 100;
+    z-index: -100;
+    opacity: 0;
+    border-radius: 3px;
     background-color: var(--color-black);
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity .3s ease-in-out;
+    &__icon{
+        height: 2.2rem;
+        width: 2.2rem;
+        fill: var(--color-grey-light);
+        &--back {
+            float:left;
+            grid-area: back;
+        }
+    }
+
+}
+
+.modal-background--active {
+    z-index: 100;
+    opacity: 1;
 }

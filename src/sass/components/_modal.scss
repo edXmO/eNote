@@ -16,14 +16,15 @@
         cursor: pointer;
     }
     
-    input,input:active {
-        background: #000;
+    input,input:active,input:focus {
         border: none;
         outline: none;
         font-family: var(--font-default);
         font-size: 2rem;
         color:var(--color-grey-light);
+        background: #000;
     }
+
     textarea,textarea:active {
         background: #000;
         border: none;
@@ -35,10 +36,6 @@
     }
 
     &__btn {
-        &--back {
-            grid-area: back;
-            justify-self: flex-start;
-        }
         &--tick {
             grid-area: tick;
             justify-self: flex-end;
@@ -47,15 +44,14 @@
     }
 
     &__icon {
-        height: 2rem;
-        width: 2rem;
+        height: 2.2rem;
+        width: 2.2rem;
         fill: var(--color-grey-light);
         &--back{
             &::placeholder{
                 color: var(--color-grey-dark)
             }
         }
-        
     }
 
     &__label {

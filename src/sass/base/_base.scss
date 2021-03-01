@@ -17,7 +17,8 @@ body {
     font-weight: 300;
     line-height: 1;
     color: var(--color-grey-light);
-    background-color: var(--color-black);
+    // background-color: var(--color-black);
+    background: linear-gradient(var(--color-primary), var(--color-primary-light));
     display: flex;
     justify-content: center;
     align-items: center;
