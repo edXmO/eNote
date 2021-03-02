@@ -1,5 +1,5 @@
 .container {
-    height: 100vh;
+    max-height: 100vh;
     max-width: 42.5rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);

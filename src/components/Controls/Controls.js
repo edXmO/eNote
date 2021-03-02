@@ -7,7 +7,6 @@ import More from '../../assets/SVG/more.svg';
 import Settings from '../../assets/SVG/settings.svg';
 
 const Controls = ({ activeSlide, swiper }) => {
-  
   return (
     <div className="controls">
       <div className="controls-box">
