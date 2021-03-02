@@ -1,12 +1,10 @@
 import addNote from './addNote';
 
 const openIndexedDB = () => {
-
     document.querySelector('.modal-form').addEventListener('submit', handleAddNote);
+    let openRequest, db;
 
     onDatabaseInit();
-
-    let openRequest, db;
 
     function handleAddNote(e) {
         // e.target[2/3].value, are the respective values 
@@ -44,6 +42,7 @@ const openIndexedDB = () => {
             // db ready
         }
     }
+    return db;
 };
 
 export default openIndexedDB;

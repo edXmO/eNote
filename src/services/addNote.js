@@ -22,7 +22,7 @@ function addNote(db, title, text) {
     }
 
     transaction.oncomplete = () => {
-        console.log("transaction completed");
+        console.log('transaction completed')
     }
 }
 

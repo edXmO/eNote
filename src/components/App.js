@@ -4,6 +4,7 @@ import '../sass/main.scss';
 //IndexedDB
 import openIndexedDB from '../services/indexedDB';
 
+
 // Components
 import Controls from './Controls/Controls';
 import Content from './Content/Content';
@@ -17,7 +18,8 @@ const App = () => {
       return;
     }
     openIndexedDB();
-  }, []);
+}, []);
+
 
   const [swiper, setSwiper] = useState();
   const [activeSlide, setActiveSlide] = useState(0);
