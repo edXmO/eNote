@@ -10,7 +10,7 @@ import Content from './Content/Content';
 import AddBtn from './AddBtn/AddBtn';
 import Modalform from './Modal/Modal';
 
-// IndexedDB Logic
+// IndexedDB Notes - Logic
 const openNotesIndexedDB = (setNotes) => {
   document.querySelector('.modal-form').addEventListener('submit', addNote);
 
@@ -57,6 +57,10 @@ const openNotesIndexedDB = (setNotes) => {
   }
 };
 
+// IndexedDB - Tasks Logic
+
+
+// Main App Container - State Management
 
 const App = () => {
 
@@ -70,7 +74,7 @@ const App = () => {
       console.log('This browser doesn\'t support IndexedDB');
       return;
     }
-    openNotesIndexedDB(setNotes);
+    openNotesIndexedDB(setNotes)
     
   }, []);
   
@@ -87,7 +91,7 @@ const App = () => {
   return (
     <div className="container">
       <Controls activeSlide={activeSlide} swiper={swiper} />
-      <Content handleSlideChange={handleSlideChange} setSwiper={setSwiper} />
+      <Content handleSlideChange={handleSlideChange} setSwiper={setSwiper} notes={notes}/>
       <Modalform
         onAddNote={onAddNote}
         activeModal={addingNote}

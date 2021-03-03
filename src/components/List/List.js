@@ -1,11 +1,19 @@
 import React from 'react';
 import Note from './Note/Note';
+import helper from '../../helpers/helper';
 
-const NoteList = () => {
+const NoteList = ({notes}) => {
+
+  const renderNotes = notes.map(note => {
+    const {timeStamp, title, text } = note;
+    const date = helper.getDate(parseInt(timeStamp));
+    return <Note key={timeStamp} title={title} content={text} date={date} />
+  });
+
+
   return (
     <ul className="list">
-      <Note title={'Título'} content={'Contenido'} date={'21 Feb'} />
-      <Note title={'Título'} content={'Contenido'} date={'21 Feb'} />
+      {!notes ? null : renderNotes}
     </ul>
   );
 };

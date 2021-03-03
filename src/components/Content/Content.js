@@ -13,7 +13,7 @@ import 'swiper/components/scrollbar/scrollbar.scss';
 // Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-const Content = ({ handleSlideChange, setSwiper }) => {
+const Content = ({ handleSlideChange, setSwiper, notes }) => {
   return (
     <Swiper
       onInit={(swiper) => setSwiper(swiper)}
@@ -23,7 +23,7 @@ const Content = ({ handleSlideChange, setSwiper }) => {
     >
       <SwiperSlide className="content__swiper-child">
         <Searchbar />
-        <NoteList />
+        <NoteList notes={notes} />
       </SwiperSlide>
 
       <SwiperSlide className="content__swiper-child">

@@ -2,7 +2,9 @@ import React from 'react';
 import Back from '../../assets/SVG/back.svg';
 import Tick from '../../assets/SVG/tick.svg';
 
-const Modalform = ({ activeSlide, activeModal, setActiveModal }) => {
+import PropTypes from 'prop-types';
+
+const Modalform = ({activeModal, setActiveModal }) => {
 
   const handleClosingModal = (e) => {
     e.preventDefault();
@@ -15,7 +17,7 @@ const Modalform = ({ activeSlide, activeModal, setActiveModal }) => {
         activeModal ? 'modal-background--active' : ''
       }`}
     >
-      <form className="modal-form" onSubmit={(e) => e.preventDefault()}>
+      <form className="modal-form">
         <button
           className="modal-background__btn--back"
           onClick={(e) => handleClosingModal(e)}
@@ -42,3 +44,8 @@ const Modalform = ({ activeSlide, activeModal, setActiveModal }) => {
 };
 
 export default Modalform;
+
+Modalform.propTypes = {
+  activeModal: PropTypes.bool,
+  setActiveModal: PropTypes.func
+}
