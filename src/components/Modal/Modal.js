@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 
 const Modalform = ({activeModal, setActiveModal }) => {
 
-  const handleClosingModal = (e) => {
-    e.preventDefault();
+  const handleClosingModal = () => {
     setActiveModal((prevState) => !prevState);
   };
 
@@ -17,10 +16,10 @@ const Modalform = ({activeModal, setActiveModal }) => {
         activeModal ? 'modal-background--active' : ''
       }`}
     >
-      <form className="modal-form">
+      <form className="modal-form" onSubmit={() => e.preventDefault()}>
         <button
           className="modal-background__btn--back"
-          onClick={(e) => handleClosingModal(e)}
+          onClick={() => handleClosingModal()}
         >
           <Back className="modal-background__icon--back modal-background__icon" />
         </button>
