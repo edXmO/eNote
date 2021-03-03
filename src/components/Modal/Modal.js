@@ -15,7 +15,7 @@ const Modalform = ({ activeSlide, activeModal, setActiveModal }) => {
         activeModal ? 'modal-background--active' : ''
       }`}
     >
-      <form className="modal-form" >
+      <form className="modal-form" onSubmit={(e) => e.preventDefault()}>
         <button
           className="modal-background__btn--back"
           onClick={(e) => handleClosingModal(e)}

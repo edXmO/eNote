@@ -23,7 +23,7 @@ module.exports = {
                                 ['@babel/preset-env', {
                                     "targets":"defaults"
                                 }],
-                                '@babel/preset-react'
+                                '@babel/preset-react',
                             ]
                         }
                     },

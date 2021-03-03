@@ -1,48 +1,47 @@
-import addNote from './addNote';
+import localForage from 'localforage';
 
-const openIndexedDB = () => {
-    document.querySelector('.modal-form').addEventListener('submit', handleAddNote);
-    let openRequest, db;
+const openNotesIndexedDB = () => {
+    document.querySelector('.modal-form').addEventListener('submit', addNote);
+    let notesData = [];
 
-    onDatabaseInit();
+    dbInit();
 
-    function handleAddNote(e) {
-        // e.target[2/3].value, are the respective values 
-        // of the note title and text
-        e.preventDefault();
-        console.log('adding-note');
-        addNote(db, e.target[2].value, e.target[3].value);
+    function dbInit() {
+        localForage.config({
+            driver: localForage.INDEXEDDB,
+            name: 'eNote',
+            version: 1,
+            storeName: 'notes'
+        });
+        getNotes();
     }
 
-    // let db;
-    function onDatabaseInit(){
-        openRequest = indexedDB.open('eNote', 2);
-
-        openRequest.onupgradeneeded = (e) => {
-            // triggers if client had no db
-            db = openRequest.result;
-            if(!db.objectStoreNames.contains('notes')){ // if there's no notes store
-                db.createObjectStore('notes', {keyPath: 'timeStamp'});
-            }
-            if(!db.objectStoreNames.contains('tasks')){
-                db.createObjectStore('tasks', {keyPath: 'timeStamp'});
-            }
+    function addNote(e){
+        let timeStamp = Date.now().toString();
+        let note = {
+            type: 'note',
+            title: e.target[2].value,
+            text: e.target[3].value
         }
-
-        openRequest.onerror = () => {
-            console.error('Error', openRequest.error);
-        }
-        
-        openRequest.onsuccess = () => {
-            db = openRequest.result;
-            db.onversionchange = () => {
-                db.close();
-                alert("Database outdated");
-            }
-            // db ready
-        }
+        localForage.setItem(timeStamp, note)
+        .then(() => console.log('item set'))
+        .catch(err => console.error(err, 'could not set the item'))
     }
-    return db;
+
+    function getNotes(){
+        localForage.iterate((key, value) => {
+            // resulting key/value pair for this callback
+            //will be executed for every item in the db
+            const { type, title, text } = key;
+            let note = {
+                timeStamp: value,
+                type,
+                title,
+                text
+            } 
+            notesData = [...notesData, note];
+        }).then(() => setItems(notesData));
+    }
 };
 
-export default openIndexedDB;
+export default openNotesIndexedDB;
