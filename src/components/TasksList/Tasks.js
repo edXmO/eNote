@@ -9,9 +9,6 @@ const Tasks = ({ activeSlide }) => {
       <Task taskText={'Checking longer note titles!'} id={'2'} />
       <Task taskText={'Finish the Notes App!'} id={'3'} />
       <Task taskText={'Checking longer note titles!'} id={'4'} />
-      <Task taskText={'Finish the Notes App!'} id={'5'} />
-      <Task taskText={'Checking longer note titles!'} id={'6'} />
-      <Task taskText={'Finish the Notes App!'} id={'7'} />
       <Task taskText={'Checking longer note titles!'} id={'8'} />
     </ul>
   );

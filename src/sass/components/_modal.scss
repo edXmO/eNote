@@ -48,12 +48,17 @@
     }
 
     &__icon {
-        height: 2.2rem;
-        width: 2.2rem;
+        height: 2.5rem;
+        width: 2.5rem;
         fill: var(--color-grey-light);
         &--back{
             &::placeholder{
                 color: var(--color-grey-dark)
+            }
+        }
+        &--tick {
+            &--success{
+                fill: greenyellow;
             }
         }
     }

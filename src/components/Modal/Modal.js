@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Back from '../../assets/SVG/back.svg';
 import Tick from '../../assets/SVG/tick.svg';
 
 import PropTypes from 'prop-types';
 
-const Modalform = ({activeModal, setActiveModal }) => {
+// Services
+import addNote from '../../services/addNote';
 
-  const handleClosingModal = () => {
+const Modalform = ({ activeModal, setActiveModal, onBackNav }) => {
+
+  const [noteSuccess, setNoteSuccess] = useState(false);
+
+  const handleSubmit = e => {
+    addNote(e);
+    setNoteSuccess(prevState => !prevState);
+  }
+
+  const handleClosingModal = (e) => {
+    e.preventDefault();
+    setNoteSuccess(false);
+    onBackNav();
     setActiveModal((prevState) => !prevState);
   };
 
@@ -16,15 +29,15 @@ const Modalform = ({activeModal, setActiveModal }) => {
         activeModal ? 'modal-background--active' : ''
       }`}
     >
-      <form className="modal-form" onSubmit={() => e.preventDefault()}>
+      <form className="modal-form" onSubmit={handleSubmit}>
         <button
           className="modal-background__btn--back"
-          onClick={() => handleClosingModal()}
+          onClick={e => handleClosingModal(e)}
         >
           <Back className="modal-background__icon--back modal-background__icon" />
         </button>
         <button type="submit" id="addNote" className="modal-form__btn--tick">
-          <Tick className="modal-form__icon--tick modal-form__icon" />
+          <Tick className={`modal-form__icon--tick modal-form__icon ${noteSuccess ? 'modal-form__icon--tick--success' : ''}`} />
         </button>
         <input
           className="modal-form__input--title"
@@ -46,5 +59,5 @@ export default Modalform;
 
 Modalform.propTypes = {
   activeModal: PropTypes.bool,
-  setActiveModal: PropTypes.func
-}
+  setActiveModal: PropTypes.func,
+};
