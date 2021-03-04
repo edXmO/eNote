@@ -1,9 +1,9 @@
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
-const BrotliPlugin = require('brotli-webpack-plugin');
 const common = require('./webpack.common');
 
 // const TerserJSPlugin = require('html-minifier-terser');
@@ -25,17 +25,15 @@ module.exports = merge(common, {
                 minifyCSS: true,
                 minifyJS: true,
                 removeComments: true
-        
             }
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
-        new BrotliPlugin({
-			asset: 'bundle.js',
-			test: /\.(js|css|html|svg)$/,
-			threshold: 10240,
-			minRatio: 0.8
-		})
+        new CompressionPlugin({
+            test: /\.js/,
+            algorithm: 'gzip',
+            minRatio: 0.8
+        })
     ],
 
 })
