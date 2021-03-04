@@ -1,19 +1,48 @@
-import React, {useState} from 'react';
+import React, { useState, useReducer } from 'react';
 import Back from '../../assets/SVG/back.svg';
 import Tick from '../../assets/SVG/tick.svg';
 
 import PropTypes from 'prop-types';
 
+import initialState from '../../helpers/initialState';
+
 // Services
 import addNote from '../../services/addNote';
 
+// Controlled Form Reducer 
+const formReducer = (state, action) => {
+  const { title, text } = action.payload;
+  switch(action.type){
+    case 'INPUT':
+      return {...state, title}
+    case 'TEXT':
+      return {...state, text}
+    default:
+      return;
+  }
+}
+
 const Modalform = ({ activeModal, setActiveModal, onBackNav }) => {
 
+  const [formState, dispatch] = useReducer(formReducer, initialState.notes)
   const [noteSuccess, setNoteSuccess] = useState(false);
 
+  const handleChange = (type, e) => {
+    e.preventDefault();
+    const { name, value} = e.target;
+    dispatch({
+      type: type,
+      payload: {
+        [name]: value
+      }
+    })
+  }
+
   const handleSubmit = e => {
-    addNote(e);
-    setNoteSuccess(prevState => !prevState);
+    const { title, text } = formState;
+    addNote(e, title, text);
+    setNoteSuccess(true);
+    e => handleClosingModal(e);
   }
 
   const handleClosingModal = (e) => {
@@ -44,11 +73,17 @@ const Modalform = ({ activeModal, setActiveModal, onBackNav }) => {
           id="title"
           type="text"
           placeholder="Title"
+          name='title'
+          value={formState.title}
+          onChange={e => handleChange('INPUT', e)}
         />
         <textarea
           id="text"
           className="modal-form__input--content"
           type="text"
+          name='text'
+          value={formState.text}
+          onChange={e => handleChange('TEXT', e)}
         />
       </form>
     </div>
@@ -60,4 +95,5 @@ export default Modalform;
 Modalform.propTypes = {
   activeModal: PropTypes.bool,
   setActiveModal: PropTypes.func,
+  onBackNav: PropTypes.func
 };
