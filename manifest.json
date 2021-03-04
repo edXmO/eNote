@@ -1,0 +1,18 @@
+{
+    "name": "eNote - Task Manager",
+    "short_name": "eNote",
+    "start_url": "https://edxmo.github.io/eNote",
+    "description": "Notes app that will help you never forget anything!",
+    "scope": "/",
+    "icons": [
+        {
+          "src": "/images/post-it.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ],
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "lang": "English",
+    "background": "#ffa500"
+}
