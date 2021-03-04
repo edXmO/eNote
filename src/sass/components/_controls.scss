@@ -27,12 +27,14 @@
         grid-area: 1 / notes-start / 2 / notes-end;
         height: 3rem;
         width: 3rem;
+        margin-bottom: 1.5rem;
     }
 
     &__tasks {
         grid-area: 1 / tasks-start / 2 / tasks-end;
         height: 3rem;
         width: 3rem;
+        margin-bottom: 1.5rem;
 
     }
 
@@ -42,11 +44,12 @@
         height: 3rem;
         width: 3rem;
         margin-right: 1.5rem;
+        margin-bottom: 1.5rem;
     }
     
     &__icon {
-        height: 2.5rem;
-        width: 2.5rem;
+        height: 2.7rem;
+        width: 2.7rem;
         fill: var(--color-grey-dark);
 
         &--active {
