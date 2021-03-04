@@ -13,8 +13,8 @@ const Note = ({ title, content, date, id, onNoteRemove }) => {
 
   return (
     <li className="item item--note">
-      <h4 className="item--note__title">{title}</h4>
-      <p className="item--note__content">{content}</p>
+      <h4 className="item--note__title">{title.slice(0,30)}</h4>
+      <p className="item--note__content">{content.slice(0, 35)}</p>
       <span className="item--note__date">{date}</span>
       <button
         className="item__btn remove-note"

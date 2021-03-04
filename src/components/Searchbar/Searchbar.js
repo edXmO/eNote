@@ -8,7 +8,7 @@ const Searchbar = () => {
         <input
           className="searchbar-box__input"
           type="text"
-          placeholder="Buscar notas"
+          placeholder="Search notes"
         />
         <MagnifyingGlass className="searchbar-box__icon" />
       </div>

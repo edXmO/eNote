@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../sass/main.scss';
 
+
+
 // Services
 // import addNote from '../services/addNote';
 import getNotes from '../services/getNotes';
 import dbInit from '../services/dbInit';
+
 
 // Components
 import Controls from './Controls/Controls';
@@ -39,8 +42,8 @@ const App = () => {
     if (!('indexedDB' in window)) {
       console.log("This browser doesn't support IndexedDB");
       return;
-    }
-
+    }    
+      
     if (isMounted) {
       openNotesIndexedDB();
       getNotes(setNotes);

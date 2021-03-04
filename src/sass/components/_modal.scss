@@ -27,6 +27,7 @@
         font-size: 2rem;
         color:var(--color-grey-light);
         background: #000;
+        caret-color: var(--color-primary);
     }
 
     textarea,textarea:active {
@@ -37,6 +38,7 @@
         font-family: var(--font-default);
         font-size: 1.8rem;
         color:var(--color-grey-light);
+        caret-color: var(--color-primary);
     }
 
     &__btn {
