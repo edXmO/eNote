@@ -2,7 +2,6 @@ import React from 'react';
 import Note from './Note/Note';
 import helper from '../../helpers/helper';
 
-
 const NoteList = ({ notes, onNoteRemove }) => {
   const renderNotes = notes.map((note) => {
     const { timeStamp, title, text } = note;

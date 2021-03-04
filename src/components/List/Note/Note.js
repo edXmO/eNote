@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 import removeNote from '../../../services/removeNote';
 
 const Note = ({ title, content, date, id, onNoteRemove }) => {
-
-  const handleRemoveClick = id => {
+  const handleRemoveClick = (id) => {
     removeNote(id);
     onNoteRemove();
   };
@@ -34,4 +33,5 @@ Note.propTypes = {
   content: PropTypes.string,
   date: PropTypes.string,
   id: PropTypes.string,
+  onNoteRemove: PropTypes.func,
 };

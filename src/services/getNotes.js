@@ -16,7 +16,7 @@ function getNotes(setItems) {
       notesData = [...notesData, note];
     })
     .then(() => setItems(notesData))
-    .catch(err => console.error('could not set the items', err));
+    .catch((err) => console.error('could not set the items', err));
 }
 
 export default getNotes;

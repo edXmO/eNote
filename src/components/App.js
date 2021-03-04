@@ -41,19 +41,18 @@ const App = () => {
       return;
     }
 
-    if (isMounted){
-      console.log('refreshing notes');
+    if (isMounted) {
       openNotesIndexedDB();
       getNotes(setNotes);
     }
 
-    return () => isMounted = false;
+    return () => (isMounted = false);
   }, []);
 
   const refreshNotes = () => {
     dbInit();
     getNotes(setNotes);
-  } 
+  };
 
   const handleSlideChange = (swiperInstance) => {
     setSwiper(swiperInstance);
@@ -74,7 +73,7 @@ const App = () => {
         notes={notes}
       />
       <Modalform
-        onBackNav ={refreshNotes}
+        onBackNav={refreshNotes}
         onAddNote={onAddNote}
         activeModal={addingNote}
         setActiveModal={setAddingNote}
