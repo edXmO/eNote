@@ -30,11 +30,12 @@ const openNotesIndexedDB = () => {
 // Main App Container - State Management
 
 const App = () => {
-  // const [tasks, setTasks] = useState([]);
+
   const [notes, setNotes] = useState([]);
   const [swiper, setSwiper] = useState();
   const [activeSlide, setActiveSlide] = useState(0);
   const [addingNote, setAddingNote] = useState(false);
+  const [selectedNote, setSelectedNote] = useState({})
 
   useEffect(() => {
     // Avoid memory leaks on refreshing data
@@ -73,22 +74,35 @@ const App = () => {
     setAddingNote((prevState) => !prevState);
   };
 
+  const handleSelectedNote = (id, title, text) => {
+    console.log(id, title, text);
+    setSelectedNote({id, title, text});
+  }
+
+
   return (
     <div className="container">
-      <Controls activeSlide={activeSlide} swiper={swiper} />
+      <Controls 
+        activeSlide={activeSlide} 
+        swiper={swiper} />
       <Content
         onNoteRemove={refreshNotes}
         handleSlideChange={handleSlideChange}
         setSwiper={setSwiper}
         notes={notes}
+        setSelectedNote={handleSelectedNote}
+        setActiveModal={setAddingNote}
       />
       <Modalform
         onBackNav={refreshNotes}
         onAddNote={onAddNote}
         activeModal={addingNote}
         setActiveModal={setAddingNote}
+        selectedNote={selectedNote}
       />
-      <AddBtn activeSlide={activeSlide} onAddNote={onAddNote} />
+      <AddBtn 
+        activeSlide={activeSlide} 
+        onAddNote={onAddNote} />
     </div>
   );
 };

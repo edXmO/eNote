@@ -5,20 +5,28 @@ import PropTypes from 'prop-types';
 // Services
 import removeNote from '../../../services/removeNote';
 
-const Note = ({ title, content, date, id, onNoteRemove }) => {
-  const handleRemoveClick = (id) => {
+const Note = ({ title, content, date, id, onNoteRemove, setSelectedNote, setActiveModal}) => {
+
+  const handleSelectedNote = (id, title, content) => {
+    console.log(id)
+    setSelectedNote(id, title, content);
+    setActiveModal(prevState => !prevState);
+  }
+
+  const handleRemoveClick = (id, e) => {
+    e.stopPropagation();
     removeNote(id);
     onNoteRemove();
   };
 
   return (
-    <li className="item item--note">
-      <h4 className="item--note__title">{title.slice(0,30)}</h4>
-      <p className="item--note__content">{content.slice(0, 35)}</p>
+    <li className="item item--note" onClick={() => handleSelectedNote(id, title, content)}>
+      <h4 className="item--note__title">{title}</h4>
+      <p className="item--note__content">{content}</p>
       <span className="item--note__date">{date}</span>
       <button
         className="item__btn remove-note"
-        onClick={() => handleRemoveClick(id)}
+        onClick={(e) => handleRemoveClick(id, e)}
       >
         <DeleteNote className="item__icon" />
       </button>

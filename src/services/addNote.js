@@ -1,12 +1,13 @@
 import localForage from 'localforage';
 
-function addNote(e, title, text) {
+function addNote(e, title, text, id) {
   e.preventDefault();
   let timeStamp = Date.now().toString();
   let note = {
     type: 'note',
     title: title,
     text: text,
+    id: id
   };
   localForage
     .setItem(timeStamp, note)

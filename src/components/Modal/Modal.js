@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import Back from '../../assets/SVG/back.svg';
 import Tick from '../../assets/SVG/tick.svg';
 
@@ -8,15 +8,16 @@ import initialState from '../../helpers/initialState';
 
 // Services
 import addNote from '../../services/addNote';
+import updateNote from '../../services/updateNote';
 
 // Controlled Form Reducer
 const formReducer = (state, action) => {
-  const { title, text } = action.payload;
+  const { title, text, id } = action.payload;
   switch (action.type) {
     case 'INPUT':
-      return { ...state, title };
+      return { ...state, title, id };
     case 'TEXT':
-      return { ...state, text };
+      return { ...state, text, id };
     default:
       return;
   }
@@ -24,7 +25,9 @@ const formReducer = (state, action) => {
 
 const INITIAL_STATE = initialState.notes;
 
-const Modalform = ({ activeModal, setActiveModal, onBackNav }) => {
+const Modalform = ({ activeModal, setActiveModal, onBackNav, selectedNote}) => {
+
+
   const [formState, dispatch] = useReducer(formReducer, INITIAL_STATE);
   const [noteSuccess, setNoteSuccess] = useState(false);
 
@@ -35,22 +38,25 @@ const Modalform = ({ activeModal, setActiveModal, onBackNav }) => {
       type: type,
       payload: {
         [name]: value,
+        id: Date.now().toString()
       },
     });
   };
 
   const handleSubmit = (e) => {
-    const { title, text } = formState;
-    addNote(e, title, text);
-    setNoteSuccess(true);
-    (e) => handleClosingModal(e);
+      const { title, text, id } = formState;
+      addNote(e, title, text, id);
+      setTimeout(() => {
+        handleClosingModal(e, true);
+      }, 500)
   };
 
-  const handleClosingModal = (e) => {
+  const handleClosingModal = (e, success) => {
     e.preventDefault();
-    setNoteSuccess(false);
+    setNoteSuccess(success);
     onBackNav();
     setActiveModal(prevState => !prevState);
+    console.log(formState);
   };
 
   return (
@@ -62,7 +68,7 @@ const Modalform = ({ activeModal, setActiveModal, onBackNav }) => {
       <form className="modal-form" onSubmit={handleSubmit}>
         <button
           className="modal-background__btn--back"
-          onClick={(e) => handleClosingModal(e)}
+          onClick={(e) => handleClosingModal(e, false)}
         >
           <Back className="modal-background__icon--back modal-background__icon" />
         </button>
@@ -79,7 +85,7 @@ const Modalform = ({ activeModal, setActiveModal, onBackNav }) => {
           type="text"
           placeholder="Title"
           name="title"
-          value={formState.title}
+          value={formState.title || ''}
           onChange={(e) => handleChange('INPUT', e)}
         />
         <textarea
@@ -87,7 +93,7 @@ const Modalform = ({ activeModal, setActiveModal, onBackNav }) => {
           className="modal-form__input--content"
           type="text"
           name="text"
-          value={formState.text}
+          value={formState.text || ''}
           onChange={(e) => handleChange('TEXT', e)}
         />
       </form>

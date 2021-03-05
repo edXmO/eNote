@@ -1,5 +1,5 @@
 const initialState = {
-  notes: { title: '', text: '' },
+  notes: { title: '', text: '', id: ''},
   tasks: { check: false, content: '' },
 };
 
