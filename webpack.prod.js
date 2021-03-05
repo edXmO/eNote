@@ -1,15 +1,20 @@
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
+const {GenerateSW} = require('workbox-webpack-plugin');
 
-// const TerserJSPlugin = require('html-minifier-terser');
+
+
+const PUBLIC_PATH = 'https://edxmo.github.io/eNote/'
+
 
 module.exports = merge(common, {
     mode: 'production',
+    output: {
+        publicPath: PUBLIC_PATH
+    },
     performance: {
         hints: false, 
         maxEntrypointSize: 512000,
@@ -29,11 +34,7 @@ module.exports = merge(common, {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
-        new CompressionPlugin({
-            test: /\.js/,
-            algorithm: 'gzip',
-            minRatio: 0.8
-        })
+        new GenerateSW(),
     ],
 
 })

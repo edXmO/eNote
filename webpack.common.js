@@ -1,10 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
+const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 
 
 module.exports = {
@@ -90,14 +91,13 @@ module.exports = {
                 from: 'src/assets', to: 'images'
               },
               {
-                from: 'public/icons', to: './images/icons'
-              },
-
-              {
-                from: 'public/serviceworker.js', to: 'serviceworker.js'
+                from: 'src/registerServiceWorker.js', to: 'registerServiceWorker.js'
               },
             ]
-        })
+        }),
+        new WebpackManifestPlugin({
+            fileName: 'asset-manifest.json', // Not to confuse with manifest.json 
+          })
     ],
     optimization: {
         minimizer: [
@@ -105,7 +105,6 @@ module.exports = {
         new TerserPlugin({
             extractComments: true,
             parallel: true,
-            
           }),
         ],
       },    
