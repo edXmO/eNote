@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../sass/main.scss';
 
+import registerServiceWorker from '../registerServiceWorker';
 
 
 // Services
@@ -42,7 +43,13 @@ const App = () => {
     if (!('indexedDB' in window)) {
       console.log("This browser doesn't support IndexedDB");
       return;
-    }    
+    }   
+    
+    if('serviceWorker' in navigator) {
+      navigator.registerServiceWorker().then(() => {
+          console.log('Service Worker Registered');
+      });
+    }
       
     if (isMounted) {
       openNotesIndexedDB();

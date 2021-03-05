@@ -6,6 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
+const {GenerateSW} = require('workbox-webpack-plugin');
+
 
 
 module.exports = {
@@ -97,7 +99,8 @@ module.exports = {
         }),
         new WebpackManifestPlugin({
             fileName: 'asset-manifest.json', // Not to confuse with manifest.json 
-          })
+        }),
+        new GenerateSW(),
     ],
     optimization: {
         minimizer: [

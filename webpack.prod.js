@@ -6,10 +6,6 @@ const common = require('./webpack.common');
 const {GenerateSW} = require('workbox-webpack-plugin');
 
 
-
-const PUBLIC_PATH = 'https://edxmo.github.io/eNote/'
-
-
 module.exports = merge(common, {
     mode: 'production',
     output: {
