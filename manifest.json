@@ -3,7 +3,7 @@
   "short_name": "eNote",
   "start_url": "https://edxmo.github.io/eNote/",
   "description": "Notes app that will help you never forget anything!",
-  "scope": "/",
+  "scope": "https://edxmo.github.io/eNote/",
   "icons": [
      {
       "src": "./images/icons/android-icon-36x36.png",
