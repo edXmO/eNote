@@ -12,12 +12,12 @@ import updateNote from '../../services/updateNote';
 
 // Controlled Form Reducer
 const formReducer = (state, action) => {
-  const { title, text, id } = action.payload;
+  const { title, text} = action.payload;
   switch (action.type) {
     case 'INPUT':
-      return { ...state, title, id };
+      return { ...state, title};
     case 'TEXT':
-      return { ...state, text, id };
+      return { ...state, text};
     default:
       return;
   }
@@ -27,36 +27,56 @@ const INITIAL_STATE = initialState.notes;
 
 const Modalform = ({ activeModal, setActiveModal, onBackNav, selectedNote}) => {
 
+  useEffect(() => {
+    if(JSON.stringify(selectedNote) === '{}'){
+      console.log('adding new note')
+    } else {
+      setEditing(prevState => !prevState);
+      formState.title = selectedNote.title;
+      formState.text = selectedNote.text;
+    }
+  }, [selectedNote]);
 
+  const [editing, setEditing] = useState(false);
   const [formState, dispatch] = useReducer(formReducer, INITIAL_STATE);
   const [noteSuccess, setNoteSuccess] = useState(false);
-
+  
   const handleChange = (type, e) => {
     e.preventDefault();
     const { name, value } = e.target;
     dispatch({
       type: type,
       payload: {
-        [name]: value,
-        id: Date.now().toString()
+        [name]: value
       },
     });
   };
 
   const handleSubmit = (e) => {
-      const { title, text, id } = formState;
-      addNote(e, title, text, id);
+      if (editing) {
+        const { id } = selectedNote;
+        updateNote(e, id ,formState.title, formState.text);
+        setTimeout(() => {
+          handleClosingModal(e, true);
+        }, 500)
+        return;
+      }
+      const { title, text } = formState;
+      addNote(e, title, text);
       setTimeout(() => {
         handleClosingModal(e, true);
       }, 500)
+      setEditing(false);
   };
 
   const handleClosingModal = (e, success) => {
     e.preventDefault();
+    formState.title = '';
+    formState.text = '';
+    setEditing(false);
     setNoteSuccess(success);
     onBackNav();
     setActiveModal(prevState => !prevState);
-    console.log(formState);
   };
 
   return (

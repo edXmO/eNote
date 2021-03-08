@@ -6,10 +6,10 @@ function getNotes(setItems) {
     .iterate((key, value) => {
       // resulting key/value pair for this callback
       // will be executed for every item in the db
-      const { type, title, text } = key;
+      const { title, text, id } = key;
       let note = {
+        id: id,
         timeStamp: value,
-        type,
         title,
         text,
       };

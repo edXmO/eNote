@@ -8,7 +8,6 @@ import removeNote from '../../../services/removeNote';
 const Note = ({ title, content, date, id, onNoteRemove, setSelectedNote, setActiveModal}) => {
 
   const handleSelectedNote = (id, title, content) => {
-    console.log(id)
     setSelectedNote(id, title, content);
     setActiveModal(prevState => !prevState);
   }
