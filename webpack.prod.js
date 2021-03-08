@@ -8,9 +8,6 @@ const {GenerateSW} = require('workbox-webpack-plugin');
 
 module.exports = merge(common, {
     mode: 'production',
-    output: {
-        publicPath: PUBLIC_PATH
-    },
     performance: {
         hints: false, 
         maxEntrypointSize: 512000,
@@ -30,7 +27,6 @@ module.exports = merge(common, {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
-        new GenerateSW(),
     ],
 
 })

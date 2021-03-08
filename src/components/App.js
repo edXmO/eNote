@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../sass/main.scss';
 
-import registerServiceWorker from '../registerServiceWorker';
+// import registerServiceWorker from '../registerServiceWorker';
 
 
 // Services
@@ -46,11 +46,6 @@ const App = () => {
       return;
     }   
     
-    if('serviceWorker' in navigator) {
-      navigator.registerServiceWorker().then(() => {
-          console.log('Service Worker Registered');
-      });
-    }
       
     if (isMounted) {
       openNotesIndexedDB();
