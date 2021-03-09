@@ -1,5 +1,9 @@
 # eNotes - Task manager built with React
 
+![Imgur](https://i.imgur.com/01UhkV6.png)
+
+![Imgur](https://i.imgur.com/JheEG0S.png)
+
 ## [Live Demo](https://edxmo.github.io/eNote/)
 
 [![GitHub issues](https://img.shields.io/github/issues/edXmO/eNote)](https://github.com/eNote/issues)
@@ -22,6 +26,6 @@
 
 ## Todo's
 
-- [] Testing
-- [] Refactor code
-- [x] Convert to PWA
+[] Testing
+[] Refactor code
+[x] Convert to PWA

@@ -16,7 +16,6 @@ const Task = ({content, id, check, onNoteRemove }) => {
 
   const [checked, setChecked] = useState(check)
 
-
   const handleChange = (e) => {
     e.preventDefault()
     setChecked(prevState => !prevState)
