@@ -9,15 +9,16 @@ import initialState from '../../helpers/initialState';
 // Services
 import addNote from '../../services/addNote';
 import updateNote from '../../services/updateNote';
+import addTask from '../../services/addTask';
 
 // Controlled Form Reducer
 const formReducer = (state, action) => {
-  const { title, text} = action.payload;
+  const { title, text } = action.payload;
   switch (action.type) {
     case 'INPUT':
-      return { ...state, title};
+      return { ...state, title };
     case 'TEXT':
-      return { ...state, text};
+      return { ...state, text };
     default:
       return;
   }
@@ -25,13 +26,19 @@ const formReducer = (state, action) => {
 
 const INITIAL_STATE = initialState.notes;
 
-const Modalform = ({ activeModal, setActiveModal, onBackNav, selectedNote}) => {
-
+const Modalform = ({
+  activeModal,
+  setActiveModal,
+  onBackNav,
+  selectedNote,
+  activeSlide
+}) => {
   useEffect(() => {
-    if(JSON.stringify(selectedNote) === '{}'){
-      console.log('adding new note')
+    if (JSON.stringify(selectedNote) === '{}') {
+      console.log('adding new note');
+      return;
     } else {
-      setEditing(prevState => !prevState);
+      setEditing((prevState) => !prevState);
       formState.title = selectedNote.title;
       formState.text = selectedNote.text;
     }
@@ -39,44 +46,52 @@ const Modalform = ({ activeModal, setActiveModal, onBackNav, selectedNote}) => {
 
   const [editing, setEditing] = useState(false);
   const [formState, dispatch] = useReducer(formReducer, INITIAL_STATE);
-  const [noteSuccess, setNoteSuccess] = useState(false);
-  
+
   const handleChange = (type, e) => {
     e.preventDefault();
     const { name, value } = e.target;
     dispatch({
       type: type,
       payload: {
-        [name]: value
+        [name]: value,
       },
     });
   };
 
   const handleSubmit = (e) => {
+    if(!activeSlide){
       if (editing) {
         const { id } = selectedNote;
-        updateNote(e, id ,formState.title, formState.text);
+        const { title, text } = formState;
+        updateNote(e, id, title, text);
         setTimeout(() => {
           handleClosingModal(e, true);
-        }, 500)
+        }, 500);
         return;
       }
       const { title, text } = formState;
       addNote(e, title, text);
       setTimeout(() => {
         handleClosingModal(e, true);
-      }, 500)
+      }, 500);
       setEditing(false);
+    }
+    if(activeSlide){
+      const { title } = formState;
+      addTask(e, title, false);
+      setTimeout(() => {
+        handleClosingModal(e, true);
+      }, 500)
+    }
   };
 
-  const handleClosingModal = (e, success) => {
+  const handleClosingModal = (e) => {
     e.preventDefault();
     formState.title = '';
     formState.text = '';
     setEditing(false);
-    setNoteSuccess(success);
     onBackNav();
-    setActiveModal(prevState => !prevState);
+    setActiveModal((prevState) => !prevState);
   };
 
   return (
@@ -85,18 +100,16 @@ const Modalform = ({ activeModal, setActiveModal, onBackNav, selectedNote}) => {
         activeModal ? 'modal-background--active' : ''
       }`}
     >
-      <form className="modal-form" onSubmit={handleSubmit}>
+      <form autoComplete="off" className="modal-form" onSubmit={handleSubmit}>
         <button
           className="modal-background__btn--back"
-          onClick={(e) => handleClosingModal(e, false)}
+          onClick={(e) => handleClosingModal(e)}
         >
           <Back className="modal-background__icon--back modal-background__icon" />
         </button>
         <button type="submit" id="addNote" className="modal-form__btn--tick">
           <Tick
-            className={`modal-form__icon--tick modal-form__icon ${
-              noteSuccess ? 'modal-form__icon--tick--success' : ''
-            }`}
+            className={'modal-form__icon'}
           />
         </button>
         <input
@@ -109,6 +122,7 @@ const Modalform = ({ activeModal, setActiveModal, onBackNav, selectedNote}) => {
           onChange={(e) => handleChange('INPUT', e)}
         />
         <textarea
+          disabled={activeSlide}
           id="text"
           className="modal-form__input--content"
           type="text"
@@ -127,4 +141,5 @@ Modalform.propTypes = {
   activeModal: PropTypes.bool,
   setActiveModal: PropTypes.func,
   onBackNav: PropTypes.func,
+  selectedNote: PropTypes.object,
 };

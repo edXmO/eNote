@@ -1,12 +1,12 @@
 import localForage from 'localforage';
 
-function dbInit() {
+function indexedDBNotesInit() {
   localForage.config({
     driver: localForage.INDEXEDDB,
-    name: 'eNote',
+    name: 'eNotes',
     version: 1,
     storeName: 'notes',
   });
 }
 
-export default dbInit;
+export default indexedDBNotesInit;

@@ -4,9 +4,10 @@ function addNote(e, title, text) {
   e.preventDefault();
   let timeStamp = Date.now().toString();
   let note = {
+    type: 'note',
     id: timeStamp,
     title: title,
-    text: text
+    text: text,
   };
   localForage
     .setItem(timeStamp, note)

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 // Svg's
 import Notes from '../../assets/SVG/notes.svg';
 import Tasks from '../../assets/SVG/check.svg';
@@ -43,3 +45,8 @@ const Controls = ({ activeSlide, swiper }) => {
 };
 
 export default Controls;
+
+Controls.propTypes = {
+  activeSlide: PropTypes.number,
+  swiper: PropTypes.object
+}

@@ -2,17 +2,20 @@ import React from 'react';
 import Task from './Task/Task';
 import PropTypes from 'prop-types';
 
-const Tasks = ({ activeSlide }) => {
+const Tasks = ({ tasks, onNoteRemove }) => {
+
+  const renderTasks = tasks.map((task) => {
+    const {id, content, check} = task;
+    return <Task content={content} check={check} id={id} key={id} onNoteRemove={onNoteRemove}/>
+  })
+  
   return (
-    <ul className="list">
-      <Task taskText={'Finish the Notes App!'} id={'1'} />
-      <Task taskText={'Checking longer note titles!'} id={'2'} />
-    </ul>
+    <ul className="list">{!tasks ? null : renderTasks}</ul>
   );
 };
 
 export default Tasks;
 
 Tasks.propTypes = {
-  activeSlide: PropTypes.number,
+  tasks: PropTypes.array
 };

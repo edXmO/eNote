@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Plus from '../../assets/SVG/plus.svg';
 
-const AddBtn = ({ activeSlide, onAddNote }) => {
+const AddBtn = ({ onAddNote }) => {
+
   const handleClick = () => {
     onAddNote();
   };
@@ -19,5 +20,5 @@ const AddBtn = ({ activeSlide, onAddNote }) => {
 export default AddBtn;
 
 AddBtn.propTypes = {
-  activeSlide: PropTypes.number,
+  onAddNote: PropTypes.func
 };
