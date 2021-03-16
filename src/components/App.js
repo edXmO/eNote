@@ -61,6 +61,7 @@ const App = () => {
     setSelectedNote({ id, title, text });
   };
 
+
   return (
     <div className="container">
       <Controls activeSlide={activeSlide} swiper={swiper} />
@@ -68,6 +69,7 @@ const App = () => {
         onNoteRemove={refreshNotes}
         handleSlideChange={handleSlideChange}
         setSwiper={setSwiper}
+        setNotes={setNotes}
         notes={notes}
         tasks={tasks}
         setSelectedNote={handleSelectedNote}

@@ -17,7 +17,8 @@ const Content = ({
   onNoteRemove,
   setSelectedNote,
   setActiveModal,
-  tasks
+  tasks,
+  setNotes
 }) => {
   return (
     <Swiper
@@ -27,7 +28,11 @@ const Content = ({
       slidesPerView={1}
     >
       <SwiperSlide className="content__swiper-child">
-        <Searchbar />
+        <Searchbar 
+        notes={notes} 
+        tasks={tasks}
+        setNotes={setNotes}
+        />
         <NoteList
           notes={notes}
           onNoteRemove={onNoteRemove}

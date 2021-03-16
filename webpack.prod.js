@@ -18,12 +18,7 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             title: 'eNote',
             template: path.resolve(__dirname, 'public', 'index.html'),
-            minify: {
-                collapseWhitespace: true,
-                minifyCSS: true,
-                minifyJS: true,
-                removeComments: true
-            }
+            minify: false
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
