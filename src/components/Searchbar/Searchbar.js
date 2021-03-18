@@ -16,7 +16,8 @@ const Searchbar = ({notes, setNotes}) => {
           placeholder="Search notes"  
           onChange={(e) => handleChange(e)}
         />
-        <MagnifyingGlass className="searchbar-box__icon" />
+        <MagnifyingGlass 
+          className="searchbar-box__icon" />
       </div>
     </div>
   );
