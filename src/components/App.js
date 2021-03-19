@@ -26,6 +26,8 @@ const App = () => {
   const [addingNote, setAddingNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
 
+  const  [filteredNotes, setFilteredNotes] = useState([]);
+
   useEffect(() => {
     // Avoid memory leaks on refreshing data
     let isMounted = true;
@@ -38,10 +40,12 @@ const App = () => {
     if (isMounted) {
       openIndexedDB();
       getItems(setNotes, setTasks);
+      getItems(setFilteredNotes, setTasks);
     }
 
     return () => (isMounted = false);
   }, []);
+
 
   const refreshNotes = () => {
     indexedDBNotesInit();
@@ -74,6 +78,8 @@ const App = () => {
         tasks={tasks}
         setSelectedNote={handleSelectedNote}
         setActiveModal={setAddingNote}
+        filteredNotes={filteredNotes}
+        setFilteredNotes={setFilteredNotes}
       />
       <Modalform
         onBackNav={refreshNotes}

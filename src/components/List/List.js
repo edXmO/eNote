@@ -2,9 +2,9 @@ import React from 'react';
 import Note from './Note/Note';
 import helper from '../../helpers/helper';
 
-const NoteList = ({ notes, onNoteRemove, setSelectedNote, setActiveModal}) => {
-  const renderNotes = notes.map((note) => {
-    const { timeStamp, title, text } = note;
+const NoteList = ({ notes, onNoteRemove, setSelectedNote, setActiveModal, filteredNotes}) => {
+  const renderNotes = filteredNotes.map((note) => {
+    const { timeStamp, title, text } = note;   
     const date = helper.getDate(parseInt(timeStamp));
     return (
       <Note

@@ -18,7 +18,9 @@ const Content = ({
   setSelectedNote,
   setActiveModal,
   tasks,
-  setNotes
+  setNotes,
+  filteredNotes,
+  setFilteredNotes
 }) => {
   return (
     <Swiper
@@ -32,9 +34,12 @@ const Content = ({
         notes={notes} 
         tasks={tasks}
         setNotes={setNotes}
+        filteredNotes={filteredNotes}
+        setFilteredNotes={setFilteredNotes}
         />
         <NoteList
           notes={notes}
+          filteredNotes={filteredNotes}
           onNoteRemove={onNoteRemove}
           setSelectedNote={setSelectedNote}
           setActiveModal={setActiveModal}

@@ -1,10 +1,11 @@
 import React from 'react';
 import MagnifyingGlass from '../../assets/SVG/loupe.svg';
 
-const Searchbar = ({notes, setNotes}) => {
+const Searchbar = ({notes, setFilteredNotes}) => {
 
   const handleChange = e => {
-    setNotes([...notes?.filter(note => note.title.toLowerCase().includes(e.target.value.toLowerCase()))]);
+    const { value } = e.target;
+    setFilteredNotes([...notes?.filter(note => note.title.toLowerCase().includes(value.toLowerCase()))]);
   }
 
   return (
