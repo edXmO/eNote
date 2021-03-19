@@ -1,12 +1,14 @@
 import localforage from 'localforage';
 
-function updateTask(id, check){
-    localforage.getItem(id)
-    .then((task) => {
-        task.check = check;
-        console.log(task);
-        localforage.setItem(id, task)
-        .then(() => console.log('task updated successfully'))
+function updateTask(id, completed){
+    localforage.getItem(id).then((task) => {
+        let newTask = {
+            ...task,
+            check: completed
+        }
+        localforage.setItem(id, newTask).then(() => {
+            console.log('task updated successfully', newTask);
+        })
         .catch((err) => console.error('Could not update the task', err));
     })
 }

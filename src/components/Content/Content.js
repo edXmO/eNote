@@ -18,9 +18,10 @@ const Content = ({
   setSelectedNote,
   setActiveModal,
   tasks,
-  setNotes,
   filteredNotes,
-  setFilteredNotes
+  setFilteredNotes,
+  filteredTasks,
+  setFilteredTasks
 }) => {
   return (
     <Swiper
@@ -32,8 +33,6 @@ const Content = ({
       <SwiperSlide className="content__swiper-child">
         <Searchbar 
         notes={notes} 
-        tasks={tasks}
-        setNotes={setNotes}
         filteredNotes={filteredNotes}
         setFilteredNotes={setFilteredNotes}
         />
@@ -47,9 +46,14 @@ const Content = ({
       </SwiperSlide>
 
       <SwiperSlide className="content__swiper-child">
-        <Searchbar />
+        <Searchbar
+        tasks={tasks}
+        filteredTasks={filteredTasks}
+        setFilteredTasks={setFilteredTasks}
+        />
         <Tasks
           onNoteRemove={onNoteRemove}
+          filteredTasks={filteredTasks}
           tasks={tasks}
           setActiveModal={setActiveModal}
         />
@@ -67,5 +71,9 @@ Content.propTypes = {
   tasks: PropTypes.array,
   onNoteRemove: PropTypes.func,
   setSelectedNote: PropTypes.func,
-  setActiveModal: PropTypes.func
+  setActiveModal: PropTypes.func,
+  filteredTasks: PropTypes.array,
+  filteredNotes:PropTypes.array,
+  setFilteredTasks: PropTypes.func,
+  setFilteredNotes: PropTypes.func
 }

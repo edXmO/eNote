@@ -2,9 +2,9 @@ import React from 'react';
 import Task from './Task/Task';
 import PropTypes from 'prop-types';
 
-const Tasks = ({ tasks, onNoteRemove }) => {
+const Tasks = ({ tasks, onNoteRemove, filteredTasks }) => {
 
-  const renderTasks = tasks.map((task) => {
+  const renderTasks = filteredTasks.map((task) => {
     const {id, content, check} = task;
     return <Task content={content} check={check} id={id} key={id} onNoteRemove={onNoteRemove}/>
   })
@@ -17,5 +17,7 @@ const Tasks = ({ tasks, onNoteRemove }) => {
 export default Tasks;
 
 Tasks.propTypes = {
-  tasks: PropTypes.array
+  tasks: PropTypes.array,
+  onNoteRemove: PropTypes.func, 
+  filteredTasks: PropTypes.array
 };

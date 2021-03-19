@@ -1,11 +1,12 @@
 import React from 'react';
 import MagnifyingGlass from '../../assets/SVG/loupe.svg';
 
-const Searchbar = ({notes, setFilteredNotes}) => {
+const Searchbar = ({notes, setFilteredNotes, tasks, setFilteredTasks}) => {
 
   const handleChange = e => {
     const { value } = e.target;
     setFilteredNotes([...notes?.filter(note => note.title.toLowerCase().includes(value.toLowerCase()))]);
+    setFilteredTasks([...tasks?.filter(task => task.content.toLowerCase().includes(value.toLowerCase()))]);
   }
 
   return (
@@ -14,7 +15,7 @@ const Searchbar = ({notes, setFilteredNotes}) => {
         <input
           className="searchbar-box__input"
           type="text"
-          placeholder="Search notes"  
+          placeholder="Search..."  
           onChange={(e) => handleChange(e)}
         />
         <MagnifyingGlass 

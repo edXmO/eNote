@@ -10,34 +10,32 @@ import PropTypes from 'prop-types';
 
 const Task = ({content, id, check, onNoteRemove }) => {
 
+  
+  const [completed, setCompleted] = useState(check)
+  
   useEffect(() => {
-    setChecked(check)
-  }, [check])
-
-  const [checked, setChecked] = useState(check)
-
-  const handleChange = (e) => {
-    e.preventDefault()
-    setChecked(prevState => !prevState)
+    updateTask(id, completed);
     onNoteRemove();
-  }
+  }, [completed])
 
+  const handleChange = () => {
+    setCompleted(!completed);
+  }
+ 
   const handleRemoveClick = (id, e) => {
     e.stopPropagation();
     removeTask(id);
     onNoteRemove();
-    console.log('removing task')
   };
 
-
   return (
-    <li className="item item--task" onClick={(e) => handleChange(e)}>
+    <li className="item item--task">
       <div className="task-container">
         <input
         name='check'
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => handleChange(e)}
+        type='checkbox'
+        defaultChecked={completed}
+        onChange={() => handleChange()}
         id={id} />
         <label htmlFor={id}>
           <span className="task-strike"></span>

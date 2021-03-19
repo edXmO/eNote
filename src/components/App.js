@@ -27,6 +27,7 @@ const App = () => {
   const [selectedNote, setSelectedNote] = useState({});
 
   const  [filteredNotes, setFilteredNotes] = useState([]);
+  const  [filteredTasks, setFilteredTasks] = useState([]);
 
   useEffect(() => {
     // Avoid memory leaks on refreshing data
@@ -40,7 +41,7 @@ const App = () => {
     if (isMounted) {
       openIndexedDB();
       getItems(setNotes, setTasks);
-      getItems(setFilteredNotes, setTasks);
+      getItems(setFilteredNotes, setFilteredTasks);
     }
 
     return () => (isMounted = false);
@@ -50,11 +51,11 @@ const App = () => {
   const refreshNotes = () => {
     indexedDBNotesInit();
     getItems(setNotes, setTasks);
-    getItems(setFilteredNotes, setTasks);
+    getItems(setFilteredNotes, setFilteredTasks);
   };
 
   const handleSlideChange = (swiperInstance) => {
-    setSwiper(swiperInstance);
+    setSwiper(swiperInstance);  
     setActiveSlide(swiperInstance.activeIndex);
   };
 
@@ -65,7 +66,6 @@ const App = () => {
   const handleSelectedNote = (id, title, text) => {
     setSelectedNote({ id, title, text });
   };
-
 
   return (
     <div className="container">
@@ -81,6 +81,8 @@ const App = () => {
         setActiveModal={setAddingNote}
         filteredNotes={filteredNotes}
         setFilteredNotes={setFilteredNotes}
+        filteredTasks={filteredTasks}
+        setFilteredTasks={setFilteredTasks}
       />
       <Modalform
         onBackNav={refreshNotes}
