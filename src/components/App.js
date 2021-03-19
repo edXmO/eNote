@@ -50,6 +50,7 @@ const App = () => {
   const refreshNotes = () => {
     indexedDBNotesInit();
     getItems(setNotes, setTasks);
+    getItems(setFilteredNotes, setTasks);
   };
 
   const handleSlideChange = (swiperInstance) => {
