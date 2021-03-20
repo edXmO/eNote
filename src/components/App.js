@@ -21,13 +21,13 @@ const openIndexedDB = () => {
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [notes, setNotes] = useState([]);
+  const  [filteredNotes, setFilteredNotes] = useState([]);
+  const  [filteredTasks, setFilteredTasks] = useState([]);
   const [swiper, setSwiper] = useState();
   const [activeSlide, setActiveSlide] = useState(0);
   const [addingNote, setAddingNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
 
-  const  [filteredNotes, setFilteredNotes] = useState([]);
-  const  [filteredTasks, setFilteredTasks] = useState([]);
 
   useEffect(() => {
     // Avoid memory leaks on refreshing data
@@ -71,6 +71,7 @@ const App = () => {
     <div className="container">
       <Controls activeSlide={activeSlide} swiper={swiper} />
       <Content
+        activeSlide={activeSlide}
         onNoteRemove={refreshNotes}
         handleSlideChange={handleSlideChange}
         setSwiper={setSwiper}

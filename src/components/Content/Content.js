@@ -21,7 +21,8 @@ const Content = ({
   filteredNotes,
   setFilteredNotes,
   filteredTasks,
-  setFilteredTasks
+  setFilteredTasks,
+  activeSlide
 }) => {
   return (
     <Swiper
@@ -31,7 +32,8 @@ const Content = ({
       slidesPerView={1}
     >
       <SwiperSlide className="content__swiper-child">
-        <Searchbar 
+        <Searchbar
+        activeSlide={activeSlide}
         notes={notes} 
         filteredNotes={filteredNotes}
         setFilteredNotes={setFilteredNotes}
@@ -47,6 +49,7 @@ const Content = ({
 
       <SwiperSlide className="content__swiper-child">
         <Searchbar
+        activeSlide={activeSlide}
         tasks={tasks}
         filteredTasks={filteredTasks}
         setFilteredTasks={setFilteredTasks}

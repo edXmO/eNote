@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 
 const Task = ({content, id, check, onNoteRemove }) => {
 
-  
   const [completed, setCompleted] = useState(check)
   
   useEffect(() => {

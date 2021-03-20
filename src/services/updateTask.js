@@ -7,7 +7,7 @@ function updateTask(id, completed){
             check: completed
         }
         localforage.setItem(id, newTask).then(() => {
-            console.log('task updated successfully', newTask);
+            console.log('task updated successfully');
         })
         .catch((err) => console.error('Could not update the task', err));
     })
