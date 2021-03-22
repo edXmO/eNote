@@ -11,6 +11,9 @@ import Content from './Content/Content';
 import AddBtn from './AddBtn/AddBtn';
 import Modalform from './Modal/Modal';
 
+//Context
+import DataContext from '../context/dataContext';
+
 // OpenIndexedDB - Logic
 const openIndexedDB = () => {
   indexedDBNotesInit();
@@ -21,13 +24,12 @@ const openIndexedDB = () => {
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [notes, setNotes] = useState([]);
-  const  [filteredNotes, setFilteredNotes] = useState([]);
-  const  [filteredTasks, setFilteredTasks] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState([]);
   const [swiper, setSwiper] = useState();
   const [activeSlide, setActiveSlide] = useState(0);
-  const [addingNote, setAddingNote] = useState(false);
+  const [activeModal, setActiveModal] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
-
 
   useEffect(() => {
     // Avoid memory leaks on refreshing data
@@ -47,7 +49,6 @@ const App = () => {
     return () => (isMounted = false);
   }, []);
 
-
   const refreshNotes = () => {
     indexedDBNotesInit();
     getItems(setNotes, setTasks);
@@ -55,12 +56,12 @@ const App = () => {
   };
 
   const handleSlideChange = (swiperInstance) => {
-    setSwiper(swiperInstance);  
+    setSwiper(swiperInstance);
     setActiveSlide(swiperInstance.activeIndex);
   };
 
   const onAddNote = () => {
-    setAddingNote((prevState) => !prevState);
+    setActiveModal((prevState) => !prevState);
   };
 
   const handleSelectedNote = (id, title, text) => {
@@ -69,28 +70,29 @@ const App = () => {
 
   return (
     <div className="container">
-      <Controls activeSlide={activeSlide} swiper={swiper} />
-      <Content
+      <Controls
+        activeSlide={activeSlide}
+        swiper={swiper}
+        activeModal={activeModal}
+        setActiveModal={setActiveModal}
+      />
+      <DataContext.Provider value={{tasks, notes, filteredTasks, filteredNotes, setFilteredTasks, setFilteredNotes}}>
+        <Content
         activeSlide={activeSlide}
         onNoteRemove={refreshNotes}
         handleSlideChange={handleSlideChange}
         setSwiper={setSwiper}
         setNotes={setNotes}
-        notes={notes}
-        tasks={tasks}
         setSelectedNote={handleSelectedNote}
-        setActiveModal={setAddingNote}
-        filteredNotes={filteredNotes}
-        setFilteredNotes={setFilteredNotes}
-        filteredTasks={filteredTasks}
-        setFilteredTasks={setFilteredTasks}
-      />
+        setActiveModal={setActiveModal}
+        />
+      </DataContext.Provider>
       <Modalform
         onBackNav={refreshNotes}
         onAddNote={onAddNote}
         activeSlide={activeSlide}
-        activeModal={addingNote}
-        setActiveModal={setAddingNote}
+        activeModal={activeModal}
+        setActiveModal={setActiveModal}
         selectedNote={selectedNote}
       />
       <AddBtn activeSlide={activeSlide} onAddNote={onAddNote} />

@@ -31,7 +31,7 @@ const Modalform = ({
   setActiveModal,
   onBackNav,
   selectedNote,
-  activeSlide
+  activeSlide,
 }) => {
   useEffect(() => {
     if (JSON.stringify(selectedNote) === '{}') {
@@ -59,7 +59,7 @@ const Modalform = ({
   };
 
   const handleSubmit = (e) => {
-    if(!activeSlide){
+    if (!activeSlide) {
       if (editing) {
         const { id } = selectedNote;
         const { title, text } = formState;
@@ -68,7 +68,7 @@ const Modalform = ({
           handleClosingModal(e, true);
         }, 500);
         return;
-      }
+      } 
       const { title, text } = formState;
       addNote(e, title, text);
       setTimeout(() => {
@@ -76,12 +76,12 @@ const Modalform = ({
       }, 500);
       setEditing(false);
     }
-    if(activeSlide){
+    if (activeSlide) {
       const { title } = formState;
       addTask(e, title, false);
       setTimeout(() => {
         handleClosingModal(e, true);
-      }, 500)
+      }, 500);
     }
   };
 
@@ -92,6 +92,57 @@ const Modalform = ({
     setEditing(false);
     onBackNav();
     setActiveModal((prevState) => !prevState);
+  };
+
+  const renderModal = (modalType) => {
+    switch (modalType) {
+      case 'addNoteTask':
+        return (
+          <form
+            autoComplete="off"
+            className="modal-form"
+            onSubmit={handleSubmit}
+          >
+            <button
+              className="modal-background__btn--back"
+              onClick={(e) => handleClosingModal(e)}
+            >
+              <Back className="modal-background__icon--back modal-background__icon" />
+            </button>
+            <button
+              type="submit"
+              id="addNote"
+              className="modal-form__btn--tick"
+            >
+              <Tick className={'modal-form__icon'} />
+            </button>
+            <input
+              className="modal-form__input--title"
+              id="title"
+              type="text"
+              placeholder="Title"
+              name="title"
+              value={formState.title || ''}
+              onChange={(e) => handleChange('INPUT', e)}
+            />
+            <textarea
+              disabled={activeSlide}
+              id="text"
+              className="modal-form__input--content"
+              type="text"
+              name="text"
+              value={formState.text || ''}
+              onChange={(e) => handleChange('TEXT', e)}
+            />
+          </form>
+        );
+      case 'noteSettings':
+        return 'noteSettings';
+      case 'taskSettings':
+        return 'taskSettings';
+      default:
+        return;
+    }
   };
 
   return (
@@ -108,9 +159,7 @@ const Modalform = ({
           <Back className="modal-background__icon--back modal-background__icon" />
         </button>
         <button type="submit" id="addNote" className="modal-form__btn--tick">
-          <Tick
-            className={'modal-form__icon'}
-          />
+          <Tick className={'modal-form__icon'} />
         </button>
         <input
           className="modal-form__input--title"

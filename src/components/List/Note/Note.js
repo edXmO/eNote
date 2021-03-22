@@ -30,8 +30,8 @@ const Note = ({
       className="item item--note"
       onClick={() => handleSelectedNote(id, title, content)}
     >
-      <h4 className="item--note__title">{title.slice(0,30)}</h4>
-      <p className="item--note__content">{content.slice(0,40)}</p>
+      <h4 className="item--note__title">{title.slice(0, 30)}</h4>
+      <p className="item--note__content">{content.slice(0, 40)}</p>
       <span className="item--note__date">{date}</span>
       <button
         className="item__btn remove-note"
@@ -52,5 +52,5 @@ Note.propTypes = {
   id: PropTypes.string,
   onNoteRemove: PropTypes.func,
   setSelectedNote: PropTypes.func,
-  setActiveModal: PropTypes.func
+  setActiveModal: PropTypes.func,
 };

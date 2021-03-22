@@ -13,16 +13,10 @@ import 'swiper/components/scrollbar/scrollbar.scss';
 const Content = ({
   handleSlideChange,
   setSwiper,
-  notes,
   onNoteRemove,
   setSelectedNote,
   setActiveModal,
-  tasks,
-  filteredNotes,
-  setFilteredNotes,
-  filteredTasks,
-  setFilteredTasks,
-  activeSlide
+  activeSlide,
 }) => {
   return (
     <Swiper
@@ -33,14 +27,9 @@ const Content = ({
     >
       <SwiperSlide className="content__swiper-child">
         <Searchbar
-        activeSlide={activeSlide}
-        notes={notes} 
-        filteredNotes={filteredNotes}
-        setFilteredNotes={setFilteredNotes}
+          activeSlide={activeSlide}
         />
         <NoteList
-          notes={notes}
-          filteredNotes={filteredNotes}
           onNoteRemove={onNoteRemove}
           setSelectedNote={setSelectedNote}
           setActiveModal={setActiveModal}
@@ -49,15 +38,10 @@ const Content = ({
 
       <SwiperSlide className="content__swiper-child">
         <Searchbar
-        activeSlide={activeSlide}
-        tasks={tasks}
-        filteredTasks={filteredTasks}
-        setFilteredTasks={setFilteredTasks}
+          activeSlide={activeSlide}
         />
         <Tasks
           onNoteRemove={onNoteRemove}
-          filteredTasks={filteredTasks}
-          tasks={tasks}
           setActiveModal={setActiveModal}
         />
       </SwiperSlide>
@@ -70,13 +54,7 @@ export default Content;
 Content.propTypes = {
   handleSlideChange: PropTypes.func,
   setSwiper: PropTypes.func,
-  notes: PropTypes.array,
-  tasks: PropTypes.array,
   onNoteRemove: PropTypes.func,
   setSelectedNote: PropTypes.func,
   setActiveModal: PropTypes.func,
-  filteredTasks: PropTypes.array,
-  filteredNotes:PropTypes.array,
-  setFilteredTasks: PropTypes.func,
-  setFilteredNotes: PropTypes.func
-}
+};

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Plus from '../../assets/SVG/plus.svg';
 
 const AddBtn = ({ onAddNote }) => {
-
   const handleClick = () => {
     onAddNote();
   };
@@ -20,5 +19,5 @@ const AddBtn = ({ onAddNote }) => {
 export default AddBtn;
 
 AddBtn.propTypes = {
-  onAddNote: PropTypes.func
+  onAddNote: PropTypes.func,
 };

@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Note from './Note/Note';
 import helper from '../../helpers/helper';
 
-const NoteList = ({ notes, onNoteRemove, setSelectedNote, setActiveModal, filteredNotes}) => {
+// Context 
+import DataContext from '../../context/dataContext';
+
+const NoteList = ({
+  onNoteRemove,
+  setSelectedNote,
+  setActiveModal,
+}) => {
+
+  const { notes, filteredNotes } = useContext(DataContext);
+
   const renderNotes = filteredNotes.map((note) => {
-    const { timeStamp, title, text } = note;   
+    const { timeStamp, title, text } = note;
     const date = helper.getDate(parseInt(timeStamp));
     return (
       <Note

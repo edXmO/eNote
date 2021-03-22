@@ -7,8 +7,8 @@ function getItems(setItems, setTasks) {
     .iterate((key, value) => {
       const { type } = key;
       // resulting key/value pair for this callback
-      // will be executed for every item in the db  
-      if(type === 'note'){
+      // will be executed for every item in the db
+      if (type === 'note') {
         const { title, text, id } = key;
         let note = {
           id: id,
@@ -19,7 +19,7 @@ function getItems(setItems, setTasks) {
         notesData = [...notesData, note];
       }
 
-      if(type === 'task'){
+      if (type === 'task') {
         const { check, content, id } = key;
         let task = {
           id: id,
