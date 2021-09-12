@@ -2,27 +2,27 @@ import React from 'react';
 import DeleteNote from '../../../assets/SVG/delete.svg';
 import PropTypes from 'prop-types';
 
-// Services
-import removeNote from '../../../services/removeNote';
+// Hooks
+import useNote from '../../../hooks/useNote';
 
 const Note = ({
   title,
   content,
   date,
   id,
-  onNoteRemove,
-  setSelectedNote,
   setActiveModal,
 }) => {
+
+  const { addNote, removeNote } = useNote();
+
   const handleSelectedNote = (id, title, content) => {
-    setSelectedNote(id, title, content);
+    addNote(e, title, content);
     setActiveModal((prevState) => !prevState);
   };
 
   const handleRemoveClick = (id, e) => {
     e.stopPropagation();
     removeNote(id);
-    onNoteRemove();
   };
 
   return (

@@ -3,13 +3,9 @@ import PropTypes from 'prop-types';
 import Plus from '../../assets/SVG/plus.svg';
 
 const AddBtn = ({ onAddNote }) => {
-  const handleClick = () => {
-    onAddNote();
-  };
-
   return (
     <div className="addBtn">
-      <button onClick={() => handleClick()} className={`btn btn--add`}>
+      <button onClick={() => onAddNote(prevState => !prevState)} className={`btn btn--add`}>
         <Plus className="addBtn__icon" />
       </button>
     </div>

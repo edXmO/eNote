@@ -8,12 +8,11 @@ import updateTask from '../../../services/updateTask';
 
 import PropTypes from 'prop-types';
 
-const Task = ({ content, id, check, onNoteRemove }) => {
+const Task = ({ content, id, check}) => {
   const [completed, setCompleted] = useState(check);
 
   useEffect(() => {
     updateTask(id, completed);
-    onNoteRemove();
   }, [completed]);
 
   const handleChange = () => {
@@ -23,7 +22,6 @@ const Task = ({ content, id, check, onNoteRemove }) => {
   const handleRemoveClick = (id, e) => {
     e.stopPropagation();
     removeTask(id);
-    onNoteRemove();
   };
 
   return (

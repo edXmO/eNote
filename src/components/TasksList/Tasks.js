@@ -1,15 +1,15 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import Task from './Task/Task';
 import PropTypes from 'prop-types';
 
-//Context
-import DataContext from '../../context/dataContext';
+// Hooks
+import useTask from '../../hooks/useTask';
 
-const Tasks = ({ onNoteRemove }) => {
+const Tasks = () => {
 
-  const { tasks, filteredTasks } = useContext(DataContext);
+  const { allTasks, addTask } = useTask();  
 
-  const renderTasks = filteredTasks.map((task) => {
+  const renderTasks = allTasks && allTasks.map((task) => {
     const { id, content, check } = task;
     return (
       <Task
@@ -17,12 +17,16 @@ const Tasks = ({ onNoteRemove }) => {
         check={check}
         id={id}
         key={id}
-        onNoteRemove={onNoteRemove}
       />
     );
   });
 
-  return <ul className="list">{!tasks ? null : renderTasks}</ul>;
+  return !allTasks?.length ? 
+    <div style={{display: 'flex', height: "auto", height: "100%", flexDirection: 'column', alignItems: 'center', justifyContent:"center", backgroundColor: "black"}}>
+      <p style={{paddingBottom: '2rem', fontSize: '1.6rem', fontWeight: "bold", color: "gainsboro"}}>You don't have any saved tasks...</p>
+    </div>
+    :
+    <ul className="list">{renderTasks}</ul>;
 };
 
 export default Tasks;
