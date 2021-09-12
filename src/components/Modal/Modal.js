@@ -6,12 +6,9 @@ import PropTypes from 'prop-types';
 
 import initialState from '../../helpers/initialState';
 
-// Services
-import updateNote from '../../services/updateNote';
-import addTask from '../../services/addTask';
-
 // Hooks 
 import useNote from '../../hooks/useNote';
+import useTask from '../../hooks/useTask';
 
 // Controlled Form Reducer
 const formReducer = (state, action) => {
@@ -35,7 +32,9 @@ const Modalform = ({
   activeSlide,
 }) => {
 
-  const { addNote } = useNote();
+  const { addNote, updateNote } = useNote();
+  const { addTask } = useTask();
+
 
   useEffect(() => {
     if (JSON.stringify(selectedNote) === '{}') {

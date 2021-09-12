@@ -2,14 +2,18 @@ import React, { useEffect, useState } from 'react';
 // SVG's
 import DeleteNote from '../../../assets/SVG/delete.svg';
 
-// Services
-import removeTask from '../../../services/removeTask';
-import updateTask from '../../../services/updateTask';
+// Hooks
+
+import useNote from '../../../hooks/useNote';
+import useTask from '../../../hooks/useTask';
+
 
 import PropTypes from 'prop-types';
 
 const Task = ({ content, id, check}) => {
   const [completed, setCompleted] = useState(check);
+
+  const {updateTask, removeTask} = useTask();
 
   useEffect(() => {
     updateTask(id, completed);

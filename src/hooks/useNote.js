@@ -65,7 +65,7 @@ const useNote = () => {
 
   }
 
-  const getItems = async () => {
+  const getNotes = async () => {
 
     try {
 
@@ -88,6 +88,8 @@ const useNote = () => {
         notes = [...notes, res];
       });
       
+      setAllNotes(notes);
+      console.log('notes from the hook', {notes})
       return notes;
 
     } catch (err) {
@@ -95,22 +97,12 @@ const useNote = () => {
     }
   }
 
-  useEffect(() => {
-    const unsubscribe = async () => {
-      const notes = await getItems();
-
-      setAllNotes(notes);
-    }
-
-    return () => unsubscribe();
-  }, []);
-
   return {
     allNotes,
     addNote,
     removeNote, 
     updateNote, 
-    getItems
+    getNotes
   }
 }
 

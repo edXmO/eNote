@@ -2,16 +2,12 @@ import React from 'react';
 import Note from './Note/Note';
 import helper from '../../helpers/helper';
 
-// Hooks
-import useNote from '../../hooks/useNote';
-
 const NoteList = ({
+  notes,
   setActiveModal,
 }) => {
 
-  const { allNotes } = useNote();
-
-  const renderNotes = allNotes?.length && allNotes.map((note) => {
+  const renderNotes = notes?.length && notes.map((note) => {
     const { timeStamp, title, text } = note;
     const date = helper.getDate(parseInt(timeStamp));
     return (
@@ -26,7 +22,7 @@ const NoteList = ({
     );
   });
 
-  return !allNotes.length ? 
+  return !notes.length ? 
     <div style={{display: 'flex', height: "auto", height: "100%", flexDirection: 'column', alignItems: 'center', justifyContent:"center", backgroundColor: "black"}}>
       <p style={{paddingBottom: '2rem', fontSize: '1.6rem', fontWeight: "bold", color: "gainsboro"}}>You don't have any saved notes...</p>
     </div>

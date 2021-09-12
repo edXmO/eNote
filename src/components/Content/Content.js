@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useDebugValue, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Searchbar from '../Searchbar/Searchbar';
 import NoteList from '../List/List';
@@ -19,21 +19,30 @@ const Content = ({
   activeSlide,
 }) => {
 
-  const { allNotes } = useNote();
+  const { getNotes } = useNote();
   const { allTasks } = useTask();
 
-  const [ filteredNotes, setFilteredNotes ] = useState(allNotes);
-  const [ filteredTasks, setFilteredTasks ] = useState(allTasks);
+  const refreshNoteData = async () => {
+    const notes = await getNotes();
+    setFilteredNotes(notes);
+  }
+
+  useEffect(() => {
+    refreshNoteData();
+  }, []);
+
+  const [ filteredNotes, setFilteredNotes ] = useState([]);
+  const [ filteredTasks, setFilteredTasks ] = useState([]);
 
   const filterListBy = term => {
     // Filtering notes
     if(!activeSlide){
-      const filtered = [...allNotes];
+      const filtered = [...filteredNotes];
       filtered.filter(note => note.title.toLowerCase().includes(term.toLowerCase()));
       setFilteredNotes(filtered);
     } else {
       // Filtering tasks
-      const filtered = [...allTasks];
+      const filtered = [...filteredTasks];
       filtered.filter(task => task.title.toLowerCase().includes(term.toLowerCase()));
       setFilteredTasks(filtered);
     }
