@@ -15,55 +15,57 @@ const useTask = () => {
     });
   }
 
-  const addTask = async (e, title, test) => {
-    // function addTask(e, text, check) {
-    //   e.preventDefault();
-    //   let timeStamp = Date.now().toString();
-    //   let task = {
-    //     type: 'task',
-    //     id: timeStamp,
-    //     check,
-    //     content: text,
-    //   };
-    //   localForage
-    //     .setItem(timeStamp, task)
-    //     .then(() => console.log('task set successfully'))
-    //     .catch((err) => console.error(err));
-    // }
-    
+  const addTask = async (e, text, check) => {
+    e.preventDefault();
 
+      try {
+        let timeStamp = Date.now().toString();
+        let task = {
+          type: 'task',
+          id: timeStamp,
+          check,
+          content: text,
+        };
+        await localForage
+          .setItem(timeStamp, task)
+          .then(() => console.log('task set successfully'))
+      } catch (err){ 
+        console.log('Error adding a new task', err);
+      }
   }
 
-  const removeTask = async () => {
-    // function removeTask(id) {
-    //   localForage
-    //     .removeItem(id)
-    //     .then(() => console.log('item with id: ', id, 'removed succesfully'))
-    //     .catch((err) => console.error('could not remove the selected task', err));
-    // }
-    
+  const removeTask = async (id) => {
+      try {
+        await localForage
+          .removeItem(id)
+          .then(() => console.log('item with id: ', id, 'removed succesfully'))       
+      } catch (err) {
+        console.log('Error removing task', err)
+      } 
   }
 
-  const updateTask = async () => {
-    // function updateTask(id, completed) {
-    //   localforage.getItem(id).then((task) => {
-    //     let newTask = {
-    //       ...task,
-    //       check: completed,
-    //     };
-    //     localforage
-    //       .setItem(id, newTask)
-    //       .then(() => {
-    //         console.log('task updated successfully');
-    //       })
-    //       .catch((err) => console.error('Could not update the task', err));
-    //   });
-    
+  const updateTask = async (id, completed) => {
+      
+    try {
+      await localForage.getItem(id, async (err, task) => {
+          let newTask = {
+            ...task, 
+            check: completed
+          };
+
+          try {
+            await localForage.setItem(id, newTask);
+          } catch(err) {
+            console.log('There was an error setting the updated item, err');
+          }
+        })
+    } catch (err) {
+      console.log('Thre was an error trying to get the updated task', err);
+    }
   }
 
   const getTasks = async() => {
     try {
-
       let tasks = [];
       indexedDBNotesInit();
 

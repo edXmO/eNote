@@ -11,7 +11,7 @@ import useNote from '../../hooks/useNote';
 import useTask from '../../hooks/useTask';
 
 // Controlled Form Reducer
-const formReducer = (state, action) => {
+const formReducer = ( state, action ) => {
   const { title, text } = action.payload;
   switch (action.type) {
     case 'INPUT':

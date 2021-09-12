@@ -1,5 +1,5 @@
-import localForage, { INDEXEDDB } from 'localforage';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import localForage  from 'localforage';
+import { useState } from 'react';
 
 const useNote = () => {
 

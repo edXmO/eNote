@@ -11,9 +11,11 @@ import useTask from '../../../hooks/useTask';
 import PropTypes from 'prop-types';
 
 const Task = ({ content, id, check}) => {
+  
+  const { updateTask, removeTask } = useTask();
+  
   const [completed, setCompleted] = useState(check);
 
-  const {updateTask, removeTask} = useTask();
 
   useEffect(() => {
     updateTask(id, completed);
